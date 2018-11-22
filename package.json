@@ -1,0 +1,23 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "Software5.js",
+  "main": "index.js",
+  "dependencies": {
+    "cucumber": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TijsDeBelie/Software5.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TijsDeBelie/Software5.js/issues"
+  },
+  "homepage": "https://github.com/TijsDeBelie/Software5.js#readme"
+}
