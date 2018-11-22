@@ -6,14 +6,15 @@
   "dependencies": {
     "assert": "^1.4.1",
     "chai": "^4.2.0",
-    "cucumber": "^5.0.2",
     "fs": "0.0.1-security",
     "mz": "^2.7.0",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cucumber": "^5.0.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cucumber-js"
   },
   "repository": {
     "type": "git",
