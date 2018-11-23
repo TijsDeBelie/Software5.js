@@ -21,11 +21,11 @@ Given('a product with name {string}', function (name){
     this.name = name
 })
 
-When('a customer adds the product to the order', function(){
-    this.actualanswer = code.addProduct(this.name)
+When('a customer adds the product {int} times to the order', function(quantity){
+    this.actualanswer = code.addProduct(this.name, quantity)
 })
 
-Then('I should see the {string} in my order', function(expectedAnswer){
-    assert(this.actualanswer.includes(expectedAnswer))
+Then('I should see the {string} {int} times in my order', function(expectedAnswer, quantity){
+    assert.equal(code.countInArray(this.actualanswer, expectedAnswer),quantity)
 })
   

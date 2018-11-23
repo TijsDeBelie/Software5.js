@@ -3,11 +3,17 @@ Feature: add product to order
 
   Scenario Outline: adding product to order
     Given  a product with name "<name>"
-    When a customer adds the product to the order
-    Then I should see the "<answer>" in my order
+    When a customer adds the product <quantity> times to the order
+    Then I should see the "<answer>" <quantity> times in my order
 
   Examples:
-    | name | answer |
-    | Bril | Bril |
-    | Beker | Beker |
-    | Tafel | Tafel |
+    | name  | answer |quantity|
+    | Bril  | Bril   |  1     |
+    | Beker | Beker  |  5     |
+    | Tafel | Tafel  |  3     |
+    | Bril  | Bril   |  8     |
+    | Beker | Beker  |  -1    |
+    | Tafel | Tafel  |  5     |
+    | Bril  | Bril   |  1.0   |
+    | Beker | Beker  |  5.3   |
+    | Tafel | Tafel  |  3000  |

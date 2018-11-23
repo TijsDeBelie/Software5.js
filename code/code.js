@@ -5,16 +5,22 @@ function isItFriday(today) {
       return "Nope";
     }
 }
-var list = []
-function addProduct(name){
-    list.push(name)
+
+function addProduct(name, quantity){
+  var list = []
+  for (var i = 0; i < quantity; i++) list.push(name);
 return list
+}
+
+function countInArray(array, what) {
+  return array.filter(item => item == what).length;
 }
 
 
 module.exports = {
 isItFriday : isItFriday,
-addProduct : addProduct
+addProduct : addProduct,
+countInArray : countInArray
 
 
 }
