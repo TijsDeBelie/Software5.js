@@ -12,8 +12,5 @@ Feature: add product to order
     | Beker | Beker  |  5     |
     | Tafel | Tafel  |  3     |
     | Bril  | Bril   |  8     |
-    | Beker | Beker  |  -1    |
     | Tafel | Tafel  |  5     |
-    | Bril  | Bril   |  1.0   |
-    | Beker | Beker  |  5.3   |
     | Tafel | Tafel  |  3000  |
