@@ -59,6 +59,7 @@ When('the user clicks on the login button', async function () {
 });
 
 Then('the user is logged in', async function () {
-    let result = driver.findElement({ id: "error" }).getText()
-    return assert.ok(result == null)
+    let result = await driver.getCurrentUrl()
+    //driver.findElement({ className: "error" }).getText()
+    return assert.equal(result,'http://localhost:8080/index.html', "Failed to login!")
 });

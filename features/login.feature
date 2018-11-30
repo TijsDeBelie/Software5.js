@@ -13,3 +13,7 @@ Feature: Login test
     Examples:
     | username | password |
     | Bril     | Bril     |
+    | test     | test     |
+    | Tijs     | 1234     |
+    | 1234     | Tijs     |
+    | @        | ###      |
