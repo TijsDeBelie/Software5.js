@@ -1,16 +1,15 @@
-Feature: add product to order
-  Customer wants to order an item
+Feature: add design to designstable
+  an user wants to add a new design
 
-  Scenario Outline: adding product to order
-    Given  a product with name "<name>"
-    When a customer adds the product <quantity> times to the order
-    Then I should see the "<answer>" <quantity> times in my order
+  Scenario Outline: adding design to designs
+    Given no design with name "<titel>" exists
+    When an user adds the new design with titel "<titel>" and beschrijving "<beschrijving>" and name "<name>" to the designstable'
+    Then I should see the "<titel>" in my designstable
 
   Examples:
-    | name  | answer |quantity|
-    | Bril  | Bril   |  1     |
-    | Beker | Beker  |  5     |
-    | Tafel | Tafel  |  3     |
-    | Bril  | Bril   |  8     |
-    | Tafel | Tafel  |  5     |
-    | Tafel | Tafel  |  3000  |
+    | titel |beschrijving|name|
+    | Bril  |test        |Tijs|
+    | Bril1 |test1       |Tijs|
+    | Bril2 |test2       |Tijs|
+    | Bril3 |test3       |Tijs|
+ 

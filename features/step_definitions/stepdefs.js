@@ -3,43 +3,31 @@ const { Given, When, Then } = require('cucumber');
 const code = require("../../code/code.js")
 const { driver } = require('../support/web_driver');
 
+//SCENARIO 1
 
-Given('today is {string}', function (givenDay) {
-  this.today = givenDay;
-});
-
-When('I ask whether it\'s Friday yet', function () {
-  this.actualAnswer = code.isItFriday(this.today);
-});
-
-Then('I should be told {string}', function (expectedAnswer) {
-  assert.equal(this.actualAnswer, expectedAnswer);
-});
-
-
-Given('a product with name {string}', function (name){
+Given('a product with name {string}', function (name) {
     this.name = name
 })
 
-When('a customer adds the product {int} times to the order', function(quantity){
+When('a customer adds the product {int} times to the order', function (quantity) {
     this.actualanswer = code.addProduct(this.name, quantity)
 })
 
-Then('I should see the {string} {int} times in my order', function(expectedAnswer, quantity){
-    assert.equal(code.countInArray(this.actualanswer, expectedAnswer),quantity)
+Then('I should see the {string} {int} times in my order', function (expectedAnswer, quantity) {
+    assert.equal(code.countInArray(this.actualanswer, expectedAnswer), quantity)
 })
 
 
 
+//SCENARIO 2
 
-
-Given('Browse to the web site {string}', async function (arg1) {
+Given('the user is on the web site {string}', async function (arg1) {
     return driver.get(arg1);
 });
 
 When('a user clicks on the username field', async function () {
     return driver.findElement({ id: "username" }).click();
-    
+
 });
 
 When('the user fills in a correct username {string}', async function (username) {
@@ -55,11 +43,31 @@ When('the user fills in a correct password {string}', async function (password) 
     return driver.findElement({ id: "password" }).sendKeys(password);
 });
 When('the user clicks on the login button', async function () {
-  return driver.findElement({ className: "btn btn-primary btn-md" }).click();
+    return driver.findElement({ className: "btn btn-primary btn-md" }).click();
 });
 
 Then('the user is logged in', async function () {
     let result = await driver.getCurrentUrl()
     //driver.findElement({ className: "error" }).getText()
-    return assert.equal(result,'http://localhost:8080/index.html', "Failed to login!")
+    return assert.equal(result, 'http://localhost:8080/index.html', "Failed to login!");
+});
+
+
+//SCENARIO 3
+Given('no design with name {string} exists', async function (arg1) {
+    let result = await code.get("http://localhost:8082/designs")
+    return result.includes(arg1);
+});
+When('an user adds the new design with titel {string} and beschrijving {string} and name {string} to the designstable\'', async function (arg1, arg2, arg3) {
+    let result = await code.post({
+        "titel": arg1,
+        "beschrijving": arg2,
+        "designerNaam": arg3
+    }, "http://localhost:8082/designs")
+    console.log(result)
+    return result;
+});
+Then('I should see the {string} in my designstable', async function (arg1) {
+    let result = await code.get("http://localhost:8082/designs");
+    return assert.equal(result.includes(arg1), true);
 });
