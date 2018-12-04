@@ -54,3 +54,29 @@ Then('I should see the {string} in my designstable', async function (arg1) {
     let result = await code.getDesigns("http://localhost:8082/designs");
     return assert.equal(result.includes(arg1), true);
 });
+
+
+
+
+
+//ADD_PRODUCT
+
+Given('no product with name {string} exists', async function (string) {
+    let result = await code.getProducts("http://localhost:8081/products")
+    return assert.equal(result.includes(string), false);
+  });
+
+  When('an user adds the new product with name {string} and price {int} to the productstable', async function (string, int) {
+    let result = await code.post({
+        "score": 0,
+        "naam": string,
+        "prijs": int
+    }, "http://localhost:8081/products")
+    return result;
+  });
+
+  
+  Then('I should see the {string} in my productstable', async function (string) {
+    let result = await code.getProducts("http://localhost:8081/products");
+    return assert.equal(result.includes(string), true);
+  });

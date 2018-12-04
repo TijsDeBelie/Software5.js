@@ -1,5 +1,5 @@
 Feature: Login test
-    a simple test to login
+    a simple login
 
     Scenario Outline: succesfull login
         Given the user is on the web site "http://localhost:8080/login"
