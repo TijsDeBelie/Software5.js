@@ -3,23 +3,7 @@ const { Given, When, Then } = require('cucumber');
 const code = require("../../code/code.js")
 const { driver } = require('../support/web_driver');
 
-//SCENARIO 1
-
-Given('a product with name {string}', function (name) {
-    this.name = name
-})
-
-When('a customer adds the product {int} times to the order', function (quantity) {
-    this.actualanswer = code.addProduct(this.name, quantity)
-})
-
-Then('I should see the {string} {int} times in my order', function (expectedAnswer, quantity) {
-    assert.equal(code.countInArray(this.actualanswer, expectedAnswer), quantity)
-})
-
-
-
-//SCENARIO 2
+//SCENARIO LOGIN
 
 Given('the user is on the web site {string}', async function (arg1) {
     return driver.get(arg1);
@@ -53,10 +37,10 @@ Then('the user is logged in', async function () {
 });
 
 
-//SCENARIO 3
-Given('no design with name {string} exists', async function (arg1) {
-    let result = await code.get("http://localhost:8082/designs")
-    return result.includes(arg1);
+//SCENARIO ADD_DESIGN
+Given('no design with titel {string} exists', async function (arg1) {
+    let result = await code.getDesigns("http://localhost:8082/designs")
+    return assert.equal(result.includes(arg1), false);
 });
 When('an user adds the new design with titel {string} and beschrijving {string} and name {string} to the designstable\'', async function (arg1, arg2, arg3) {
     let result = await code.post({
@@ -64,10 +48,9 @@ When('an user adds the new design with titel {string} and beschrijving {string} 
         "beschrijving": arg2,
         "designerNaam": arg3
     }, "http://localhost:8082/designs")
-    console.log(result)
     return result;
 });
 Then('I should see the {string} in my designstable', async function (arg1) {
-    let result = await code.get("http://localhost:8082/designs");
+    let result = await code.getDesigns("http://localhost:8082/designs");
     return assert.equal(result.includes(arg1), true);
 });

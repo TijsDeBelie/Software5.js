@@ -16,16 +16,19 @@ function countInArray(array, what) {
   return array.filter(item => item == what).length;
 }
 
-async function get(someUrl) {
+async function getDesigns(someUrl) {
   var request = require('request');
   var promise = new Promise(function (resolve, reject) {
     request.get(someUrl, function (err, res, body) {
-      if (!err && res.statusCode === 200) {
+      if (!err && res.statusCode === 200 || res.statusCode == 201) {
         body = JSON.parse(body)
-        //console.log('body:', body._embedded);
-        resolve(Object.values(body._embedded))
+        console.log("================================================================")
+        console.log(body._embedded.designs.map(function(o) { return o.titel; }));
+        
+        console.log("================================================================")
+        resolve(body._embedded.designs.map(function(o) { return o.titel; }))
       } else {
-        reject(res.statusCode)
+        reject(err)
       }
     });
   });
@@ -36,10 +39,10 @@ async function post(input, someUrl) {
   var request = require('request');
   var promise = new Promise(function (resolve, reject) {
     request.post(someUrl, { json: true, body: input }, function (err, res, body) {
-      if (!err && res.statusCode === 200) {
-        resolve(Object.values(body._embedded))
+      if (!err && res.statusCode === 200 || res.statusCode == 201) {
+        resolve("Gelukt")
       } else {
-        reject(res.statusCode)
+        reject(err)
       }
     });
   });
@@ -54,7 +57,7 @@ module.exports = {
   isItFriday: isItFriday,
   addProduct: addProduct,
   countInArray: countInArray,
-  get: get,
+  getDesigns: getDesigns,
   post: post
 
 }
