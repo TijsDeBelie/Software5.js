@@ -1,7 +1,7 @@
 Feature: Login test
     a simple login
 
-    Scenario Outline: succesfull login
+    Scenario Outline: successful login
         Given the user is on the web site "http://localhost:8080/login"
         And a user clicks on the username field
         And the user fills in a correct username "<username>"

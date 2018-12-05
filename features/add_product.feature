@@ -8,9 +8,8 @@ Feature: add product to producttable
 
   Examples:
     | name   |price  |
-    | Bril   |100    |
-    | Bril1  |5000   |
-    | Bril2  |10000  |
+    | Bril1  |500000   |
+    | Bril2  |1000000  |
     
     
     
